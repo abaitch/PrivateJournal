@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A1A035518FF149000F9C720 /* AJBEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A035418FF149000F9C720 /* AJBEntry.m */; };
+		6A1A035818FF15AF00F9C720 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A035718FF15AF00F9C720 /* Entry.m */; };
+		6A9E602218FEFA630080D740 /* AJBStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9E602118FEFA630080D740 /* AJBStartViewController.m */; };
 		6AB6A8A218FEEDCF00145111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB6A8A118FEEDCF00145111 /* Foundation.framework */; };
 		6AB6A8A418FEEDCF00145111 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB6A8A318FEEDCF00145111 /* CoreGraphics.framework */; };
 		6AB6A8A618FEEDCF00145111 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB6A8A518FEEDCF00145111 /* UIKit.framework */; };
@@ -22,6 +25,8 @@
 		6AB6A8C318FEEDCF00145111 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB6A8A718FEEDCF00145111 /* CoreData.framework */; };
 		6AB6A8CB18FEEDD000145111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AB6A8C918FEEDD000145111 /* InfoPlist.strings */; };
 		6AB6A8CD18FEEDD000145111 /* JournalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB6A8CC18FEEDD000145111 /* JournalTests.m */; };
+		6AB6A8D718FEEDE800145111 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AB6A8D618FEEDE800145111 /* Storyboard.storyboard */; };
+		6AFDC19718FF2D900059192F /* AJBPhotoEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFDC19618FF2D900059192F /* AJBPhotoEntryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6A1A035318FF149000F9C720 /* AJBEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBEntry.h; sourceTree = "<group>"; };
+		6A1A035418FF149000F9C720 /* AJBEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBEntry.m; sourceTree = "<group>"; };
+		6A1A035618FF15AF00F9C720 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		6A1A035718FF15AF00F9C720 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		6A9E602018FEFA630080D740 /* AJBStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJBStartViewController.h; path = ../AJBStartViewController.h; sourceTree = "<group>"; };
+		6A9E602118FEFA630080D740 /* AJBStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJBStartViewController.m; path = ../AJBStartViewController.m; sourceTree = "<group>"; };
 		6AB6A89E18FEEDCF00145111 /* Journal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB6A8A118FEEDCF00145111 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6AB6A8A318FEEDCF00145111 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +64,9 @@
 		6AB6A8C818FEEDD000145111 /* JournalTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JournalTests-Info.plist"; sourceTree = "<group>"; };
 		6AB6A8CA18FEEDD000145111 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6AB6A8CC18FEEDD000145111 /* JournalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JournalTests.m; sourceTree = "<group>"; };
+		6AB6A8D618FEEDE800145111 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = ../Storyboard.storyboard; sourceTree = "<group>"; };
+		6AFDC19518FF2D900059192F /* AJBPhotoEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBPhotoEntryViewController.h; sourceTree = "<group>"; };
+		6AFDC19618FF2D900059192F /* AJBPhotoEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBPhotoEntryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +129,15 @@
 		6AB6A8A918FEEDCF00145111 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
+				6A9E602018FEFA630080D740 /* AJBStartViewController.h */,
+				6A9E602118FEFA630080D740 /* AJBStartViewController.m */,
+				6AFDC19518FF2D900059192F /* AJBPhotoEntryViewController.h */,
+				6AFDC19618FF2D900059192F /* AJBPhotoEntryViewController.m */,
+				6AB6A8D618FEEDE800145111 /* Storyboard.storyboard */,
+				6A1A035318FF149000F9C720 /* AJBEntry.h */,
+				6A1A035418FF149000F9C720 /* AJBEntry.m */,
+				6A1A035618FF15AF00F9C720 /* Entry.h */,
+				6A1A035718FF15AF00F9C720 /* Entry.m */,
 				6AB6A8B218FEEDCF00145111 /* AJBAppDelegate.h */,
 				6AB6A8B318FEEDCF00145111 /* AJBAppDelegate.m */,
 				6AB6A8B818FEEDCF00145111 /* Images.xcassets */,
@@ -231,6 +254,7 @@
 			files = (
 				6AB6A8AE18FEEDCF00145111 /* InfoPlist.strings in Resources */,
 				6AB6A8B918FEEDCF00145111 /* Images.xcassets in Resources */,
+				6AB6A8D718FEEDE800145111 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +273,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A1A035818FF15AF00F9C720 /* Entry.m in Sources */,
+				6AFDC19718FF2D900059192F /* AJBPhotoEntryViewController.m in Sources */,
 				6AB6A8B718FEEDCF00145111 /* Journal.xcdatamodeld in Sources */,
+				6A9E602218FEFA630080D740 /* AJBStartViewController.m in Sources */,
+				6A1A035518FF149000F9C720 /* AJBEntry.m in Sources */,
 				6AB6A8B418FEEDCF00145111 /* AJBAppDelegate.m in Sources */,
 				6AB6A8B018FEEDCF00145111 /* main.m in Sources */,
 			);
@@ -448,6 +476,7 @@
 				6AB6A8D218FEEDD000145111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6AB6A8D318FEEDD000145111 /* Build configuration list for PBXNativeTarget "JournalTests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +485,7 @@
 				6AB6A8D518FEEDD000145111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
