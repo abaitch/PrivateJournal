@@ -7,6 +7,8 @@
 //
 
 #import "AJBAppDelegate.h"
+#import "AJBEntry.h"
+#import "Entry.h"
 
 @implementation AJBAppDelegate
 
@@ -63,6 +65,65 @@
             abort();
         } 
     }
+}
+
+#pragma mark - Adding Entries
+
+// add an entry using the wrapper
+- (BOOL)addEntryFromWrapper:(AJBEntry *)entry
+{
+    if (![self checkIfAlreadyRegistered:entry]) {
+        Entry *entryToStore = [NSEntityDescription insertNewObjectForEntityForName:@"Entry"
+                                                          inManagedObjectContext:self.managedObjectContext];
+        entryToStore.entryTitle = entry.entryTitle;
+        entryToStore.latitude = [NSNumber numberWithFloat:entry.latitude];
+        entryToStore.longitude = [NSNumber numberWithFloat:entry.longitude];
+        entryToStore.filePath = entry.filePath;
+        entryToStore.fileType = entry.fileType;
+        entryToStore.date = entry.date;
+        
+        NSError *error;
+        if (![self.managedObjectContext save:&error]) {     //committing changes
+            return NO;
+        }
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
+// Check if an entry is already stored
+- (BOOL)checkIfAlreadyRegistered:(AJBEntry *)entry
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry"
+                                              inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"entryTitle == %@ AND date == %@ AND latitude == %@ AND longitude == %@ AND fileType = %@" , entry.entryTitle, entry.date, entry.latitude, entry.longitude, entry.fileType];
+    fetchRequest.entity = entity;
+    
+    NSError *error;
+    NSArray *fetchedResults = [self.managedObjectContext
+                               executeFetchRequest:fetchRequest
+                               error:&error];
+    
+    return [fetchedResults count] > 0;
+}
+
+// array of all the entries stored in Core Data
+- (NSArray *)allEntries
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry"
+                                              inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.entity = entity;
+    
+    NSError *error;
+    NSArray *fetchedResults = [self.managedObjectContext
+                               executeFetchRequest:fetchRequest
+                               error:&error];
+    
+    return fetchedResults;
 }
 
 #pragma mark - Core Data stack

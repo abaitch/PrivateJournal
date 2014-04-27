@@ -25,7 +25,6 @@
                                 </state>
                                 <connections>
                                     <action selector="audioTapped:" destination="kxY-cm-UdM" eventType="touchUpInside" id="3XN-ul-GNk"/>
-                                    <segue destination="zY4-nj-jYr" kind="modal" id="HOl-8A-wKW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhb-ja-bRM">
@@ -65,8 +64,8 @@
                                 </state>
                                 <connections>
                                     <action selector="cameraTapped:" destination="kxY-cm-UdM" eventType="touchUpInside" id="JKk-N5-GMH"/>
+                                    <action selector="selectPhoto:" destination="kxY-cm-UdM" eventType="touchUpInside" id="zB6-5c-8XE"/>
                                     <action selector="takePhoto:" destination="kxY-cm-UdM" eventType="touchUpInside" id="HQg-xm-89p"/>
-                                    <segue destination="2St-wE-iBE" kind="modal" id="cdU-86-mbB"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="JCR-6k-cs4">
@@ -77,7 +76,7 @@
                                 <rect key="frame" x="82" y="215" width="156" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Um-rg-5Rg">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Um-rg-5Rg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.26479704483695654" green="0.0" blue="0.040734110025339713" alpha="1" colorSpace="calibratedRGB"/>
@@ -101,16 +100,17 @@
                         <outlet property="cameraLauncher" destination="FzK-d0-vvl" id="kzO-R2-8JP"/>
                         <outlet property="gateway" destination="6X7-nI-Xeq" id="RBV-1y-hFG"/>
                         <outlet property="videoLauncher" destination="Fhb-ja-bRM" id="Qfc-0C-9sU"/>
+                        <segue destination="2St-wE-iBE" kind="modal" identifier="readyToStorePhoto" modalTransitionStyle="flipHorizontal" id="A3H-31-jf1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vq2-le-bEb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="187" y="275"/>
+            <point key="canvasLocation" x="145" y="-117"/>
         </scene>
-        <!--View Controller-->
+        <!--Photo Entry View Controller-->
         <scene sceneID="kTY-z3-E8h">
             <objects>
-                <viewController id="2St-wE-iBE" sceneMemberID="viewController">
+                <viewController id="2St-wE-iBE" customClass="AJBPhotoEntryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bcy-4p-DqF"/>
                         <viewControllerLayoutGuide type="bottom" id="fQs-o5-Vkd"/>
@@ -120,7 +120,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXQ-BG-ldS">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="19" width="320" height="558"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tap to add title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gdf-z5-BYs">
@@ -130,10 +130,21 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xO8-Cq-6wb">
-                                <rect key="frame" x="20" y="518" width="280" height="30"/>
+                                <rect key="frame" x="162" y="513" width="148" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.12237936869187779" green="0.32583220108695654" blue="0.033035707472468402" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Add Comment">
+                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="+ Comment">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNS-1S-EyZ">
+                                <rect key="frame" x="13" y="513" width="141" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="+ Tags">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -141,10 +152,17 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SkA-TW-O01">
                                 <rect key="frame" x="0.0" y="19" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.94999999999999996"/>
                                 <items>
-                                    <navigationItem title="Title" id="oTX-2D-C1O"/>
+                                    <navigationItem title="Photo Entry" id="oTX-2D-C1O">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="oVY-Ee-C0N">
+                                            <connections>
+                                                <action selector="userHitCancel:" destination="2St-wE-iBE" id="Q1a-g8-K5y"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="SJT-0s-Nuv"/>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -152,10 +170,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="dwy-5z-Qsf"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="commentButton" destination="xO8-Cq-6wb" id="DKY-lu-dbi"/>
+                        <outlet property="imageView" destination="bXQ-BG-ldS" id="Qbf-R5-vlX"/>
+                        <outlet property="tagButton" destination="eNS-1S-EyZ" id="3AI-xU-UhH"/>
+                        <outlet property="titleField" destination="Gdf-z5-BYs" id="Z7b-Pg-Lqu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bf-gD-c4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="791" y="-164"/>
+            <point key="canvasLocation" x="786" y="-158"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="KqM-sr-HMR">
@@ -173,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTS-Gv-5np" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="802" y="518"/>
+            <point key="canvasLocation" x="792" y="714"/>
         </scene>
     </scenes>
     <resources>

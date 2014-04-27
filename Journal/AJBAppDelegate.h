@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AJBEntry.h"
 
 @interface AJBAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -18,5 +19,11 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+
+// core data
+- (BOOL)addEntryFromWrapper:(AJBEntry *) entry;
+- (BOOL)checkIfAlreadyRegistered:(AJBEntry *) entry;
+- (NSArray *)allEntries;
+
 
 @end

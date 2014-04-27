@@ -26,7 +26,7 @@
 		6AB6A8CB18FEEDD000145111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AB6A8C918FEEDD000145111 /* InfoPlist.strings */; };
 		6AB6A8CD18FEEDD000145111 /* JournalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB6A8CC18FEEDD000145111 /* JournalTests.m */; };
 		6AB6A8D718FEEDE800145111 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AB6A8D618FEEDE800145111 /* Storyboard.storyboard */; };
-		6AFDC19718FF2D900059192F /* AJBPhotoEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFDC19618FF2D900059192F /* AJBPhotoEntryViewController.m */; };
+		6AD81DE51908A62100F50525 /* AJBPhotoEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD81DE41908A62100F50525 /* AJBPhotoEntryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +65,8 @@
 		6AB6A8CA18FEEDD000145111 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6AB6A8CC18FEEDD000145111 /* JournalTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JournalTests.m; sourceTree = "<group>"; };
 		6AB6A8D618FEEDE800145111 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = ../Storyboard.storyboard; sourceTree = "<group>"; };
-		6AFDC19518FF2D900059192F /* AJBPhotoEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBPhotoEntryViewController.h; sourceTree = "<group>"; };
-		6AFDC19618FF2D900059192F /* AJBPhotoEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBPhotoEntryViewController.m; sourceTree = "<group>"; };
+		6AD81DE31908A62100F50525 /* AJBPhotoEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBPhotoEntryViewController.h; sourceTree = "<group>"; };
+		6AD81DE41908A62100F50525 /* AJBPhotoEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBPhotoEntryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,9 +131,9 @@
 			children = (
 				6A9E602018FEFA630080D740 /* AJBStartViewController.h */,
 				6A9E602118FEFA630080D740 /* AJBStartViewController.m */,
-				6AFDC19518FF2D900059192F /* AJBPhotoEntryViewController.h */,
-				6AFDC19618FF2D900059192F /* AJBPhotoEntryViewController.m */,
 				6AB6A8D618FEEDE800145111 /* Storyboard.storyboard */,
+				6AD81DE31908A62100F50525 /* AJBPhotoEntryViewController.h */,
+				6AD81DE41908A62100F50525 /* AJBPhotoEntryViewController.m */,
 				6A1A035318FF149000F9C720 /* AJBEntry.h */,
 				6A1A035418FF149000F9C720 /* AJBEntry.m */,
 				6A1A035618FF15AF00F9C720 /* Entry.h */,
@@ -273,8 +273,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AD81DE51908A62100F50525 /* AJBPhotoEntryViewController.m in Sources */,
 				6A1A035818FF15AF00F9C720 /* Entry.m in Sources */,
-				6AFDC19718FF2D900059192F /* AJBPhotoEntryViewController.m in Sources */,
 				6AB6A8B718FEEDCF00145111 /* Journal.xcdatamodeld in Sources */,
 				6A9E602218FEFA630080D740 /* AJBStartViewController.m in Sources */,
 				6A1A035518FF149000F9C720 /* AJBEntry.m in Sources */,

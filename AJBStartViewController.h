@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+
 
 @interface AJBStartViewController : UIViewController
 
@@ -15,5 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *audioLauncher;
 @property (weak, nonatomic) IBOutlet UIButton *gateway;
 
+// for videos
+@property (copy,   nonatomic) NSURL *movieURL;
+@property (strong, nonatomic) MPMoviePlayerController *movieController;
 
 @end

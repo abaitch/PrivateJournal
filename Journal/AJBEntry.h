@@ -15,6 +15,6 @@
 @property (nonatomic) float longitude;
 @property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSString * fileType;
-@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSString * date;
 
 @end

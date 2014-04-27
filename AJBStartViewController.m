@@ -12,6 +12,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AJBPhotoEntryViewController.h"
 
+
 @interface AJBStartViewController () <UIActionSheetDelegate, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 //application delegate
