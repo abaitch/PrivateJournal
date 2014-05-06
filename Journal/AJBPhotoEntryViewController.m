@@ -52,6 +52,7 @@
     NSString *stringFromDate = [formatter stringFromDate:self.date];
     NSLog(@"Date: %@", stringFromDate);
     NSLog(@"Location: %f, %f", self.latitude, self.longitude);
+    self.commentsToStore = @"";
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,7 +110,7 @@
     }
     //logic to actually save
     entryToAdd.entryTitle = self.titleField.text;
-    
+    entryToAdd.comments = self.commentsToStore;
     // save location to entry
     entryToAdd.latitude = self.latitude;
     entryToAdd.longitude = self.longitude;
@@ -128,6 +129,26 @@
     } else {
         UIAlertView *somethingWrong = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something was wrong" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [somethingWrong show];
+    }
+}
+
+// Adding comments
+
+- (IBAction)enterComments:(id)sender
+{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Add Comment" message:@"Write a note to yourself." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add Comments", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField * alertTextField = [alert textFieldAtIndex:0];
+    alertTextField.keyboardType = UIKeyboardTypeDefault;
+    alertTextField.placeholder = @"Begin typing...";
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *buttonTitle=[alertView buttonTitleAtIndex:buttonIndex];
+    if([buttonTitle isEqualToString:@"Add Comments"]) {
+        NSString *comm = [alertView textFieldAtIndex:0].text;
+        self.commentsToStore = comm;
     }
 }
 

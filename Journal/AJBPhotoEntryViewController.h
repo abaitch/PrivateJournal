@@ -22,5 +22,6 @@
 @property (nonatomic) float latitude;
 @property (nonatomic) float longitude;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
+@property (strong, nonatomic) IBOutlet NSString *commentsToStore;
 
 @end

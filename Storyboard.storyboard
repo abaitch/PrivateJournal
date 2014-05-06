@@ -36,6 +36,7 @@
                                 </state>
                                 <connections>
                                     <action selector="videoTapped:" destination="kxY-cm-UdM" eventType="touchUpInside" id="g2d-KR-6x6"/>
+                                    <segue destination="2St-wE-iBE" kind="modal" id="PxB-FR-bjO"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Microphone-icon" translatesAutoresizingMaskIntoConstraints="NO" id="oun-EU-8BK">
@@ -130,7 +131,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xO8-Cq-6wb">
-                                <rect key="frame" x="162" y="513" width="148" height="45"/>
+                                <rect key="frame" x="11" y="513" width="299" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -138,16 +139,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNS-1S-EyZ">
-                                <rect key="frame" x="13" y="513" width="141" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="+ Tags">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <connections>
+                                    <action selector="enterComments:" destination="2St-wE-iBE" eventType="touchUpInside" id="bpV-ld-Ge0"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SkA-TW-O01">
                                 <rect key="frame" x="0.0" y="19" width="320" height="44"/>
@@ -173,13 +167,30 @@
                     <connections>
                         <outlet property="commentButton" destination="xO8-Cq-6wb" id="DKY-lu-dbi"/>
                         <outlet property="imageView" destination="bXQ-BG-ldS" id="Qbf-R5-vlX"/>
-                        <outlet property="tagButton" destination="eNS-1S-EyZ" id="3AI-xU-UhH"/>
                         <outlet property="titleField" destination="Gdf-z5-BYs" id="Z7b-Pg-Lqu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bf-gD-c4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="786" y="-158"/>
+            <point key="canvasLocation" x="758" y="-413"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="XkS-jf-dPx">
+            <objects>
+                <viewController id="IPn-Ae-0Jp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8O4-gZ-xAo"/>
+                        <viewControllerLayoutGuide type="bottom" id="axf-lq-Cns"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IcL-eh-9Ra">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qU4-JR-UiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="767" y="304"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="KqM-sr-HMR">
@@ -215,4 +226,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="PxB-FR-bjO"/>
+    </inferredMetricsTieBreakers>
 </document>

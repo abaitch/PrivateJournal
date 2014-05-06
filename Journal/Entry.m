@@ -11,6 +11,7 @@
 @implementation Entry
 
 @dynamic entryTitle;
+@dynamic comments;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic filePath;

@@ -12,6 +12,7 @@
 @interface Entry : NSManagedObject
 
 @property (nonatomic, retain) NSString * entryTitle;
+@property (nonatomic, retain) NSString * comments;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSString * filePath;

@@ -14,6 +14,7 @@
 {
     if (self = [self init]) {
         _entryTitle = [decoder decodeObjectForKey:@"entryTitle"];
+        _comments = [decoder decodeObjectForKey:@"comments"];
         _latitude = [[decoder decodeObjectForKey:@"latitude"] floatValue];
         _longitude = [[decoder decodeObjectForKey:@"longitude"] floatValue];
         _filePath = [decoder decodeObjectForKey:@"filePath"];
@@ -27,6 +28,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     [coder encodeObject:_entryTitle forKey:@"entryTitle"];
+    [coder encodeObject:_comments forKey:@"comments"];
     [coder encodeObject:@(_latitude) forKey:@"latitude"];
     [coder encodeObject:@(_longitude) forKey:@"longitude"];
     [coder encodeObject:_filePath forKey:@"filePath"];

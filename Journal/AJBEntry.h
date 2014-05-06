@@ -11,6 +11,7 @@
 @interface AJBEntry : NSObject
 
 @property (nonatomic, retain) NSString * entryTitle;
+@property (nonatomic, retain) NSString * comments;
 @property (nonatomic) float latitude;
 @property (nonatomic) float longitude;
 @property (nonatomic, retain) NSString * filePath;
