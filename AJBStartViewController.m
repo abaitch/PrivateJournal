@@ -152,14 +152,44 @@
     
 }
 
+// allow user to take a video
+- (IBAction)captureVideo:(id)sender {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeMovie, nil];
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    }
+}
+
 // set imageToStore to the chosen image and get date and time
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
+    // if something...
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.imageToStore = chosenImage;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"readyToStorePhoto" sender:self];
+    
+    // else, it's a video
+    /*
+     self.videoURL = info[UIImagePickerControllerMediaURL];
+     [picker dismissViewControllerAnimated:YES completion:NULL];
+     
+     // I think the next lines should be in videoentryviewcontroller
+     self.videoController = [[MPMoviePlayerController alloc] init];
+     
+     [self.videoController setContentURL:self.videoURL];
+     [self.videoController.view setFrame:CGRectMake (0, 0, 320, 460)];
+     [self.view addSubview:self.videoController.view];
+     
+     [self.videoController play];
+     */
     
 }
 

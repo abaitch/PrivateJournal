@@ -35,8 +35,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="captureVideo:" destination="kxY-cm-UdM" eventType="touchUpInside" id="dws-bB-QBw"/>
                                     <action selector="videoTapped:" destination="kxY-cm-UdM" eventType="touchUpInside" id="g2d-KR-6x6"/>
-                                    <segue destination="2St-wE-iBE" kind="modal" id="PxB-FR-bjO"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Microphone-icon" translatesAutoresizingMaskIntoConstraints="NO" id="oun-EU-8BK">
@@ -185,30 +185,21 @@
                     <view key="view" contentMode="scaleToFill" id="IcL-eh-9Ra">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tm-Ss-09N">
+                                <rect key="frame" x="20" y="521" width="280" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qU4-JR-UiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="767" y="304"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="KqM-sr-HMR">
-            <objects>
-                <viewController id="zY4-nj-jYr" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7df-TN-jS6"/>
-                        <viewControllerLayoutGuide type="bottom" id="l0R-Of-K5R"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UVd-mp-UP5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DTS-Gv-5np" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="792" y="714"/>
         </scene>
     </scenes>
     <resources>
@@ -226,7 +217,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="PxB-FR-bjO"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -11,7 +11,10 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 
 
-@interface AJBStartViewController : UIViewController
+@interface AJBStartViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (strong, nonatomic) NSURL *videoURL;
+@property (strong, nonatomic) MPMoviePlayerController *videoController;
 
 @property (weak, nonatomic) IBOutlet UIButton *cameraLauncher;
 @property (weak, nonatomic) IBOutlet UIButton *videoLauncher;
