@@ -15,7 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *recordPauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *stopButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (nonatomic, weak) NSString *audioFilePath;
+@property (nonatomic, weak) NSURL *audioFilePath;
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
+@property (weak, nonatomic) IBOutlet UITextField *commentsField;
 
 @end
 
@@ -52,7 +54,8 @@
     NSString *audioFileName = @"testAudio";
     NSString *fullPath = [NSString stringWithFormat:@"%@/%@.m4a", dataPath, audioFileName]; //add our image to the path
     NSLog(@"%@", fullPath);
-    self.audioFilePath = fullPath;
+    NSURL *outputFile = [NSURL URLWithString:fullPath];
+    self.audioFilePath = outputFile;
     
     // Setup audio session
     AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -66,7 +69,7 @@
     [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
     
     // Initiate and prepare the recorder
-    _recorder = [[AVAudioRecorder alloc] initWithURL:fullPath settings:recordSetting error:NULL];
+    _recorder = [[AVAudioRecorder alloc] initWithURL:outputFile settings:recordSetting error:NULL];
     _recorder.delegate = self;
     _recorder.meteringEnabled = YES;
     [_recorder prepareToRecord];
