@@ -11,6 +11,7 @@
 #import "AJBEntry.h"
 #import <CoreLocation/CoreLocation.h>
 #import "AJBPhotoEntryViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 
 @interface AJBStartViewController () <UIActionSheetDelegate, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -230,4 +231,16 @@
 }
 */
 
+/*- (void) startRecordingAudio:(id)sender
+    AVAudioRecorder *recorder =[AVAudioRecorder
+    [audioS setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+    [audioS setActive:YES error:&error];
+
+    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+
+    NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat: 44100.0],AVSampleRateKey,
+                              [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+                              [NSNumber numberWithInt: 2],AVNumberOfChannelsKey,[NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+                              nil];
+*/
 @end
