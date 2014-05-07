@@ -11,6 +11,7 @@
 #import "AJBEntry.h"
 #import <CoreLocation/CoreLocation.h>
 #import "AJBPhotoEntryViewController.h"
+#import "AJBVideoEntryViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 
@@ -24,6 +25,9 @@
 
 // image to store
 @property (nonatomic, strong) UIImage * imageToStore;
+
+// boolean for photo vs video
+@property(nonatomic) Boolean isPhoto;
 
 @end
 
@@ -132,7 +136,7 @@
 // allow user to take new picture
 - (IBAction)takePhoto:(UIButton *)sender {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
+        self.isPhoto = YES;
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.allowsEditing = YES;
@@ -144,20 +148,19 @@
 
 // allow user to select photo from camera roll
 - (IBAction)selectPhoto:(UIButton *)sender {
-    
+    self.isPhoto = YES;
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     
     [self presentViewController:picker animated:YES completion:NULL];
-    
 }
 
 // allow user to take a video
 - (IBAction)captureVideo:(id)sender {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
+        self.isPhoto = NO;
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.allowsEditing = YES;
@@ -171,28 +174,32 @@
 // set imageToStore to the chosen image and get date and time
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    // if something...
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.imageToStore = chosenImage;
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    [self performSegueWithIdentifier:@"readyToStorePhoto" sender:self];
-    
-    // else, it's a video
-    /*
-     self.videoURL = info[UIImagePickerControllerMediaURL];
-     [picker dismissViewControllerAnimated:YES completion:NULL];
-     
-     // I think the next lines should be in videoentryviewcontroller
-     self.videoController = [[MPMoviePlayerController alloc] init];
-     
-     [self.videoController setContentURL:self.videoURL];
-     [self.videoController.view setFrame:CGRectMake (0, 0, 320, 460)];
-     [self.view addSubview:self.videoController.view];
-     
-     [self.videoController play];
-     */
-    
+    if (self.isPhoto == YES) {
+        
+        // working with a photo
+        UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+        self.imageToStore = chosenImage;
+        
+        [picker dismissViewControllerAnimated:YES completion:^{
+             [self performSegueWithIdentifier:@"readyToStorePhoto" sender:self];
+        }];
+    } else {
+        
+        // working with a video
+        self.videoURL = info[UIImagePickerControllerMediaURL];
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [self performSegueWithIdentifier:@"readyToStoreVideo" sender:self];
+        }];
+        
+      //  self.videoController = [[MPMoviePlayerController alloc] init];
+        
+       // [self.videoController setContentURL:self.videoURL];
+       // [self.videoController.view setFrame:CGRectMake (0, 0, 320, 460)];
+       // [self.view addSubview:self.videoController.view];
+        
+       // [self.videoController play];
+    }
+
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -213,10 +220,24 @@
         
         // set destination view controller values
         destination.date = today;
-        destination.imageView.image = self.imageToStore;
+        destination.imageToStore = self.imageToStore;
         destination.location = location;
         
         NSLog(@"Before Segue: file path = %@", _imageToStore);
+    } else if ([segue.identifier isEqualToString:@"readyToStoreVideo"]){
+        AJBVideoEntryViewController *destination = (AJBVideoEntryViewController *) segue.destinationViewController;
+        // get location and date
+        CLLocation *location = [self.locationManager location];
+        NSDate *today = [NSDate date];
+        
+        // set destination view controller values
+        destination.videoURL = self.videoURL;
+        destination.date = today;
+        destination.location = location;
+        destination.videoController = [[MPMoviePlayerController alloc] init];
+        [destination.videoController setContentURL:self.videoURL];
+        [destination.videoController.view setFrame:CGRectMake (0, 80, 320, 460)];
+        [destination.view addSubview:destination.videoController.view];
     }
 }
 

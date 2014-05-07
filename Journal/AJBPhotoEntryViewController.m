@@ -49,10 +49,12 @@
     self.latitude = self.location.coordinate.latitude;
     self.longitude = self.location.coordinate.longitude;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterMediumStyle;
     NSString *stringFromDate = [formatter stringFromDate:self.date];
     NSLog(@"Date: %@", stringFromDate);
     NSLog(@"Location: %f, %f", self.latitude, self.longitude);
     self.commentsToStore = @"";
+    self.imageView.image = self.imageToStore;
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,14 +101,15 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error]; //Create folder
     
+    int randomNumber = (arc4random() % 1000000) + 1;
     NSString *imageName = [NSString stringWithFormat:@"%@", self.titleField.text];
-    NSString *fullPath = [NSString stringWithFormat:@"%@/%@.jpg", dataPath, imageName]; //add our image to the path
+    NSString *fullPath = [NSString stringWithFormat:@"%@/%@-%d.jpg", dataPath, imageName, randomNumber]; //add our image to the path
     NSLog(@"%@", fullPath);
     NSError *writeError = nil;
     [imageData writeToFile:fullPath options:NSDataWritingAtomic error:&writeError];
     
     if (writeError != nil) {
-        NSLog(@"@: Error while saving image: %@", [self class], [writeError localizedDescription]);
+        NSLog(@"%@: Error while saving image: %@", [self class], [writeError localizedDescription]);
     }
     //logic to actually save
     entryToAdd.entryTitle = self.titleField.text;
@@ -120,9 +123,7 @@
     entryToAdd.fileType = @"photo";
     
     // add date to entry
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSString *stringFromDate = [formatter stringFromDate:self.date];
-    entryToAdd.date = stringFromDate;
+    entryToAdd.date = self.date;
     
     if ([self.appDelegate addEntryFromWrapper:entryToAdd]) {
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -130,6 +131,7 @@
         UIAlertView *somethingWrong = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something was wrong" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [somethingWrong show];
     }
+    
 }
 
 // Adding comments

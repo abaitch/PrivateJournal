@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AJBStartViewController.m"
-            timestampString = "421109768.92715"
+            timestampString = "421189490.707509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "@implementation AJBStartViewController"
             landmarkType = "3">
          </BreakpointContent>

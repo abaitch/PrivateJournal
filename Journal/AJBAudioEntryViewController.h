@@ -10,5 +10,6 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface AJBAudioEntryViewController : UIViewController <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *recordLabel;
 
 @end

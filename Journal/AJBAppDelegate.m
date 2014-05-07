@@ -99,7 +99,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry"
                                               inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"entryTitle == %@ AND date == %@ AND latitude == %@ AND longitude == %@ AND fileType = %@" , entry.entryTitle, entry.date, entry.latitude, entry.longitude, entry.fileType];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"entryTitle == %@ AND date == %@ AND latitude == %f AND longitude == %f AND fileType == %@" , entry.entryTitle, entry.date, entry.latitude, entry.longitude, entry.fileType];
     fetchRequest.entity = entity;
     
     NSError *error;

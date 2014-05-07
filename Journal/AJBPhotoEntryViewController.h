@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) CLLocation *location;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIImage * imageToStore;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIButton *tagButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;

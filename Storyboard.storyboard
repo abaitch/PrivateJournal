@@ -25,7 +25,7 @@
                                 </state>
                                 <connections>
                                     <action selector="audioTapped:" destination="kxY-cm-UdM" eventType="touchUpInside" id="3XN-ul-GNk"/>
-                                    <segue destination="IPn-Ae-0Jp" kind="modal" modalTransitionStyle="flipHorizontal" id="z1q-Vd-KOk"/>
+                                    <segue destination="IPn-Ae-0Jp" kind="modal" modalTransitionStyle="coverVertical" id="z1q-Vd-KOk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhb-ja-bRM">
@@ -103,11 +103,67 @@
                         <outlet property="gateway" destination="6X7-nI-Xeq" id="RBV-1y-hFG"/>
                         <outlet property="videoLauncher" destination="Fhb-ja-bRM" id="Qfc-0C-9sU"/>
                         <segue destination="2St-wE-iBE" kind="modal" identifier="readyToStorePhoto" modalTransitionStyle="flipHorizontal" id="A3H-31-jf1"/>
+                        <segue destination="04f-Xy-LZf" kind="modal" identifier="readyToStoreVideo" modalTransitionStyle="flipHorizontal" id="uil-cs-fed"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vq2-le-bEb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="145" y="-117"/>
+            <point key="canvasLocation" x="189" y="-46"/>
+        </scene>
+        <!--Video Entry View Controller-->
+        <scene sceneID="BO5-aI-sS8">
+            <objects>
+                <viewController id="04f-Xy-LZf" customClass="AJBVideoEntryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q7R-iS-Sid"/>
+                        <viewControllerLayoutGuide type="bottom" id="sRd-1A-yo9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HXu-hz-90q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UET-IH-Xp1">
+                                <rect key="frame" x="0.0" y="16" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Video Entry" id="whp-Nr-wev">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Bo7-Wz-Wcv"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="0ye-FA-ZuZ">
+                                            <connections>
+                                                <action selector="storeEntry:" destination="04f-Xy-LZf" id="9iW-Ic-gXn"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tap to add title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bqg-kz-Tsu">
+                                <rect key="frame" x="20" y="76" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXU-CW-PQG">
+                                <rect key="frame" x="11" y="509" width="299" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="+ Comment">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="Bo7-Wz-Wcv" id="2WG-Z7-a0D"/>
+                        <outlet property="saveButton" destination="0ye-FA-ZuZ" id="GdX-7h-azf"/>
+                        <outlet property="titleField" destination="Bqg-kz-Tsu" id="yUU-hZ-GhM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ahV-Uj-vyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="773" y="-4"/>
         </scene>
         <!--Photo Entry View Controller-->
         <scene sceneID="kTY-z3-E8h">
@@ -156,7 +212,11 @@
                                                 <action selector="userHitCancel:" destination="2St-wE-iBE" id="Q1a-g8-K5y"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="SJT-0s-Nuv"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="SJT-0s-Nuv">
+                                            <connections>
+                                                <action selector="storeEntry:" destination="2St-wE-iBE" id="vtE-Vb-bQg"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -173,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bf-gD-c4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="758" y="-413"/>
+            <point key="canvasLocation" x="773" y="-661"/>
         </scene>
         <!--Audio Entry View Controller-->
         <scene sceneID="XkS-jf-dPx">
@@ -187,12 +247,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tm-Ss-09N">
-                                <rect key="frame" x="20" y="314" width="280" height="73"/>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Zg-hr-8cI">
+                                <rect key="frame" x="0.0" y="62" width="320" height="506"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.020565607126348251" blue="0.081119938840578221" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Record">
+                                <color key="backgroundColor" red="0.14823594933432505" green="0.17587594957912128" blue="0.35326086956521741" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tm-Ss-09N">
+                                <rect key="frame" x="39" y="171" width="242" height="243"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="REC" image="recordButton">
                                     <color key="titleColor" red="1" green="0.93460006242469396" blue="0.9996840200821957" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -200,12 +266,34 @@
                                     <action selector="recordPauseTapped:" destination="IPn-Ae-0Jp" eventType="touchUpInside" id="pe5-Dn-98L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfQ-hT-IgZ">
-                                <rect key="frame" x="20" y="395" width="280" height="74"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1e-cy-IWD">
+                                <rect key="frame" x="96" y="422" width="129" height="91"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.71705163043478259" green="0.66543319138310841" blue="0.71622250363792439" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Stop">
+                                <state key="normal" image="playButton2">
+                                    <color key="titleColor" red="1" green="0.93460006240000004" blue="0.99968402010000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playTapped:" destination="IPn-Ae-0Jp" eventType="touchUpInside" id="A6s-ul-iZS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSf-uN-iDJ">
+                                <rect key="frame" x="85" y="504" width="140" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
+                                <state key="normal" title="Start Over">
+                                    <color key="titleColor" red="1" green="0.93460006240000004" blue="0.99968402010000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetTapped:" destination="IPn-Ae-0Jp" eventType="touchUpInside" id="FLm-Rf-mhB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfQ-hT-IgZ">
+                                <rect key="frame" x="20" y="431" width="280" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
+                                <state key="normal" title="Finish and Listen">
                                     <color key="titleColor" red="1" green="0.93460006240000004" blue="0.99968402010000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -213,26 +301,17 @@
                                     <action selector="stopTapped:" destination="IPn-Ae-0Jp" eventType="touchUpInside" id="nTl-E1-Gyc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frg-Ds-zUp">
-                                <rect key="frame" x="20" y="477" width="280" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.24968427230529844" green="0.51186735733695654" blue="0.24068546629534016" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Play">
-                                    <color key="titleColor" red="1" green="0.93460006240000004" blue="0.99968402010000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playTapped:" destination="IPn-Ae-0Jp" eventType="touchUpInside" id="Dca-Ja-ufk"/>
-                                </connections>
-                            </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YMK-cg-KUd">
                                 <rect key="frame" x="0.0" y="17" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Audio Note" id="f7T-wc-Hzj">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="cPM-CG-bPD"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="QQS-WK-9w5"/>
+                                    <navigationItem title="Audio Entry" id="f7T-wc-Hzj">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="cPM-CG-bPD">
+                                            <connections>
+                                                <action selector="userHitCancel:" destination="IPn-Ae-0Jp" id="2Sk-6h-mJy"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="QQS-WK-9w5"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -248,25 +327,36 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gjn-YN-sxL">
+                                <rect key="frame" x="133" y="282" width="54" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.98837129901980991" green="1" blue="0.99118078243222396" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="commentsField" destination="AZZ-y7-CSr" id="N79-uT-e1C"/>
-                        <outlet property="playButton" destination="Frg-Ds-zUp" id="HWY-k4-9AQ"/>
+                        <outlet property="playButton" destination="A1e-cy-IWD" id="ocf-tp-fvU"/>
+                        <outlet property="recordLabel" destination="Gjn-YN-sxL" id="bFK-ZP-iD1"/>
                         <outlet property="recordPauseButton" destination="0tm-Ss-09N" id="Na1-eP-aab"/>
+                        <outlet property="resetButton" destination="CSf-uN-iDJ" id="Coc-5s-2ZN"/>
                         <outlet property="stopButton" destination="QfQ-hT-IgZ" id="6eu-kv-fHc"/>
                         <outlet property="titleField" destination="xO4-op-iLm" id="9bH-Jq-RfT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qU4-JR-UiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="767" y="296"/>
+            <point key="canvasLocation" x="773" y="660"/>
         </scene>
     </scenes>
     <resources>
         <image name="cameraicon" width="256" height="256"/>
         <image name="micicon" width="500" height="500"/>
+        <image name="playButton2" width="269" height="199"/>
+        <image name="recordButton" width="256" height="256"/>
         <image name="videoicon" width="256" height="256"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

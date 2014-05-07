@@ -8,13 +8,14 @@
 
 #import "AJBAudioEntryViewController.h"
 
-@interface AJBAudioEntryViewController ()
+@interface AJBAudioEntryViewController () <UIActionSheetDelegate>
 
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) AVAudioPlayer *player;
 @property (weak, nonatomic) IBOutlet UIButton *recordPauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *stopButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
 @property (nonatomic, weak) NSURL *audioFilePath;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *commentsField;
@@ -37,10 +38,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    NSLog(@"ViewDidLoad");
+    [self.playButton setEnabled:NO];
+    [self.resetButton setEnabled:NO];
+    [self.stopButton setEnabled:YES];
+    self.playButton.hidden = YES;
+    self.resetButton.hidden = YES;
+    self.stopButton.hidden = NO;
+    [self prepareForRecording];
+}
+
+- (void) prepareForRecording {
     // Disable Stop/Play button when application launches
-    [_stopButton setEnabled:NO];
-    [_playButton setEnabled:NO];
     
     // Set the audio file
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -51,8 +60,9 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:dataPath])
         [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:NO attributes:nil error:&error]; //Create folder
     
-    NSString *audioFileName = @"testAudio";
-    NSString *fullPath = [NSString stringWithFormat:@"%@/%@.m4a", dataPath, audioFileName]; //add our image to the path
+    int randomNumber = (arc4random() % 1000000) + 1;
+    NSString *audioFileName = @"audio";
+    NSString *fullPath = [NSString stringWithFormat:@"%@/%@-%d.mp3", dataPath, audioFileName, randomNumber]; //add our image to the path
     NSLog(@"%@", fullPath);
     NSURL *outputFile = [NSURL URLWithString:fullPath];
     self.audioFilePath = outputFile;
@@ -93,24 +103,57 @@
         
         // Start recording
         [self.recorder record];
-        [self.recordPauseButton setTitle:@"Pause" forState:UIControlStateNormal];
-        
+        [self.recordPauseButton setImage:[UIImage imageNamed:@"pauseButton.png"] forState:UIControlStateNormal];
+        self.recordLabel.hidden = YES;
+        [self.playButton setEnabled:NO];
+        [self.resetButton setEnabled:NO];
+        [self.stopButton setEnabled:YES];
+        self.playButton.hidden = YES;
+        self.resetButton.hidden = YES;
+        self.stopButton.hidden = NO;
     } else {
         
         // Pause recording
         [self.recorder pause];
-        [self.recordPauseButton setTitle:@"Record" forState:UIControlStateNormal];
+        [self.recordPauseButton setImage:[UIImage imageNamed:@"recordButton.png"] forState:UIControlStateNormal];
+        self.recordLabel.hidden = NO;
+        [self.playButton setEnabled:NO];
+        [self.resetButton setEnabled:NO];
+        [self.stopButton setEnabled:YES];
+        self.playButton.hidden = YES;
+        self.resetButton.hidden = YES;
+        self.stopButton.hidden = NO;
     }
-    
-    [self.stopButton setEnabled:YES];
-    [self.playButton setEnabled:NO];
 }
 
 - (IBAction)stopTapped:(id)sender {
     [self.recorder stop];
+    self.playButton.hidden = NO;
+    self.resetButton.hidden = NO;
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setActive:NO error:nil];
+    [self.stopButton setEnabled:NO];
+    [self.playButton setEnabled:YES];
+    [self.resetButton setEnabled:YES];
+    self.stopButton.hidden =YES;
+    self.playButton.hidden = NO;
+    self.resetButton.hidden = NO;
+    [self.recordPauseButton setImage:[UIImage imageNamed:@"recordButton.png"] forState:UIControlStateNormal];
+}
+
+- (IBAction)resetTapped:(id)sender {
+    [self.recorder stop];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:NO error:nil];
+    [self.stopButton setEnabled:YES];
+    [self.recordPauseButton setImage:[UIImage imageNamed:@"recordButton.png"] forState:UIControlStateNormal];
+    [self.playButton setEnabled:NO];
+    [self.resetButton setEnabled:NO];
+    [self.stopButton setEnabled:YES];
+    self.playButton.hidden = YES;
+    self.resetButton.hidden = YES;
+    self.stopButton.hidden = NO;
 }
 
 - (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
@@ -122,20 +165,40 @@
 
 - (IBAction)playTapped:(id)sender {
     if (!self.recorder.recording){
+        UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
+        AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
+        UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+        AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,sizeof (audioRouteOverride),&audioRouteOverride);
+        
         self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recorder.url error:nil];
         [self.player setDelegate:self];
         [self.player play];
+        [self.resetButton setEnabled:YES];
+        self.resetButton.hidden = NO;
     }
 }
 
 - (void) audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Done"
-                                                    message: @"Finish playing the recording!"
-                                                   delegate: nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+    
 }
+
+- (IBAction)userHitCancel:(id)sender
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Never Mind"
+                                               destructiveButtonTitle:@"Cancel"
+                                                    otherButtonTitles:nil, nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 /*
 #pragma mark - Navigation
 
