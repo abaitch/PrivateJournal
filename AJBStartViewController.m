@@ -236,7 +236,7 @@
         destination.location = location;
         destination.videoController = [[MPMoviePlayerController alloc] init];
         [destination.videoController setContentURL:self.videoURL];
-        [destination.videoController.view setFrame:CGRectMake (0, 80, 320, 460)];
+        [destination.videoController.view setFrame:CGRectMake (0, 144, 320, 424)];
         [destination.view addSubview:destination.videoController.view];
     }
 }

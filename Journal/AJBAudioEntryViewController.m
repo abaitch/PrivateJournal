@@ -7,24 +7,66 @@
 //
 
 #import "AJBAudioEntryViewController.h"
+#import "AJBEntry.h"
+#import <CoreLocation/CoreLocation.h>
+#import "AJBAppDelegate.h"
 
-@interface AJBAudioEntryViewController () <UIActionSheetDelegate>
+@interface AJBAudioEntryViewController () <UIActionSheetDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) AVAudioPlayer *player;
+@property (nonatomic, strong) NSDate *date;
 @property (weak, nonatomic) IBOutlet UIButton *recordPauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *stopButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
+@property (weak, nonatomic) IBOutlet CLLocation *location;
 @property (nonatomic, weak) NSURL *audioFilePath;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *commentsField;
+@property (nonatomic) float latitude;
+@property (nonatomic) float longitude;
+
+
+// location manager
+@property (nonatomic, strong) CLLocationManager *locationManager;
+
+//application delegate
+@property (nonatomic, strong) AJBAppDelegate *appDelegate;
+
+
+//keyboard toolbar
+@property (nonatomic, strong) UIToolbar *keyboardToolbar;
+@property (nonatomic, strong) UIBarButtonItem *previousButton;
+@property (nonatomic, strong) UIBarButtonItem *nextButton;
+- (void) nextField;
+- (void) previousField;
+- (void) resignKeyboard;
 
 @end
 
 @implementation AJBAudioEntryViewController
 
+// initialize the app delegate
+- (AJBAppDelegate *)appDelegate
+{
+    if (!_appDelegate) {
+        _appDelegate = (AJBAppDelegate *)[[UIApplication sharedApplication] delegate];
+    }
+    
+    return _appDelegate;
+}
 
+- (CLLocationManager *)locationManager
+{
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager.delegate = self;
+    }
+    
+    return _locationManager;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +80,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.date = [NSDate date];
+    CLLocation *location = [self.locationManager location];
+    self.latitude = [[NSNumber numberWithDouble:location.coordinate.latitude] floatValue];
+    self.longitude = [[NSNumber numberWithDouble:location.coordinate.longitude] floatValue];
     NSLog(@"ViewDidLoad");
     [self.playButton setEnabled:NO];
     [self.resetButton setEnabled:NO];
@@ -45,6 +91,10 @@
     self.playButton.hidden = YES;
     self.resetButton.hidden = YES;
     self.stopButton.hidden = NO;
+    self.titleField.inputAccessoryView = self.keyboardToolbar;
+    self.commentsField.inputAccessoryView = self.keyboardToolbar;
+    [self.titleField setDelegate:self];
+    [self.commentsField setDelegate:self];
     [self prepareForRecording];
 }
 
@@ -199,6 +249,142 @@
     }
 }
 
+- (IBAction)storeEntry:(id)sender
+{
+    
+    // actually save image to File System here----------
+    //Where the 0 denotes the compression (0 to 1).
+    
+    AJBEntry *entryToAdd = [[AJBEntry alloc] init];
+
+    if ([self.titleField.text isEqualToString:@""]) {
+        UIAlertView *noTitle = [[UIAlertView alloc] initWithTitle:@"Hold Up!" message:@"Please enter a title." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [noTitle show];
+        return;
+    }
+    
+    //logic to actually save
+    
+    entryToAdd.entryTitle = self.titleField.text;
+    entryToAdd.comments = self.commentsField.text;
+    // save location to entry
+    entryToAdd.latitude = self.latitude;
+    entryToAdd.longitude = self.longitude;
+    
+    // add image file path to note
+    entryToAdd.filePath = [self.audioFilePath absoluteString];
+    entryToAdd.fileType = @"audio";
+    
+    // add date to entry
+    entryToAdd.date = self.date;
+    
+    if ([self.appDelegate addEntryFromWrapper:entryToAdd]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        UIAlertView *somethingWrong = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something was wrong" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [somethingWrong show];
+    }
+    
+}
+
+- (void) nextField
+{
+    if ([self.titleField isFirstResponder]) {
+        [self.commentsField becomeFirstResponder];
+    }
+}
+
+- (void) previousField
+{
+    if ([self.commentsField isFirstResponder]) {
+        [self.titleField becomeFirstResponder];
+    }
+}
+
+// keyboard toolbar
+- (UIToolbar *)keyboardToolbar
+{
+    if (!_keyboardToolbar) {
+        _keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+        self.previousButton = [[UIBarButtonItem alloc] initWithTitle:@"Previous"
+                                                               style:UIBarButtonItemStyleBordered
+                                                              target:self
+                                                              action:@selector(previousField)];
+        
+        self.nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next"
+                                                           style:UIBarButtonItemStyleBordered
+                                                          target:self
+                                                          action:@selector(nextField)];
+        
+        UIBarButtonItem *extraSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                    target:self
+                                                                                    action:nil];
+        
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(resignKeyboard)];
+        
+        [_keyboardToolbar setItems:@[self.previousButton, self.nextButton, extraSpace, doneButton]];
+    }
+    
+    return _keyboardToolbar;
+}
+
+
+- (void) resignKeyboard
+{
+    for (UIView *view in self.view.subviews) {
+        if ([view isKindOfClass:[UITextField class]]) {
+            [view resignFirstResponder];
+        }
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    CGRect viewFrame = self.view.frame;
+    
+    if (textField == self.titleField) {
+        self.previousButton.enabled = NO;
+    } else {
+        self.previousButton.enabled = YES;
+    }
+    
+    if (textField == self.commentsField) {
+        self.nextButton.enabled = NO;
+    } else {
+        self.nextButton.enabled = YES;
+    }
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3f];
+    
+    self.view.frame = viewFrame;
+    
+    [UIView commitAnimations];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    CGRect viewFrame = self.view.frame;
+    viewFrame.origin.y = 0;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3f];
+    
+    [textField resignFirstResponder];
+    self.view.frame = viewFrame;
+    
+    [UIView commitAnimations];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
 /*
 #pragma mark - Navigation
 

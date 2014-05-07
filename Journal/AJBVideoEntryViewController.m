@@ -30,6 +30,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.latitude = self.location.coordinate.latitude;
+    self.longitude = self.location.coordinate.longitude;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterMediumStyle;
+    NSString *stringFromDate = [formatter stringFromDate:self.date];
+    NSLog(@"Date: %@", stringFromDate);
+    NSLog(@"Location: %f, %f", self.latitude, self.longitude);
+    self.commentsToStore = @"";
+    [self.titleField setDelegate:self];
     [self.videoController play];
     // Do any additional setup after loading the view.
 }
@@ -60,6 +69,13 @@
 
 - (IBAction)storeEntry:(id)sender
 {
+    
+    if ([self.titleField.text isEqualToString:@""]) {
+        UIAlertView *noTitle = [[UIAlertView alloc] initWithTitle:@"Hold Up!" message:@"Please enter a title." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [noTitle show];
+        return;
+    }
+    
     // actually save image to File System here----------
     //Where the 0 denotes the compression (0 to 1).
     
@@ -109,9 +125,34 @@
                                                        otherButtonTitles:nil, nil];
         [somethingWrong show];
     }
+    
+    
 }
 
+// Adding comments
 
+- (IBAction)enterComments:(id)sender
+{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Add Comment" message:@"Write a note to yourself." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add Comments", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField * alertTextField = [alert textFieldAtIndex:0];
+    alertTextField.keyboardType = UIKeyboardTypeDefault;
+    alertTextField.placeholder = @"Begin typing...";
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *buttonTitle=[alertView buttonTitleAtIndex:buttonIndex];
+    if([buttonTitle isEqualToString:@"Add Comments"]) {
+        NSString *comm = [alertView textFieldAtIndex:0].text;
+        self.commentsToStore = comm;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
 /*
 #pragma mark - Navigation
 

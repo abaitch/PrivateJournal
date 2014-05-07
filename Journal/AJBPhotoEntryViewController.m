@@ -54,6 +54,7 @@
     NSLog(@"Date: %@", stringFromDate);
     NSLog(@"Location: %f, %f", self.latitude, self.longitude);
     self.commentsToStore = @"";
+    [self.titleField setDelegate:self];
     self.imageView.image = self.imageToStore;
 }
 
@@ -86,6 +87,12 @@
 
 - (IBAction)storeEntry:(id)sender
 {
+    
+    if ([self.titleField.text isEqualToString:@""]) {
+        UIAlertView *noTitle = [[UIAlertView alloc] initWithTitle:@"Hold Up!" message:@"Please enter a title." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [noTitle show];
+        return;
+    }
     
     // actually save image to File System here----------
     //Where the 0 denotes the compression (0 to 1).
@@ -152,6 +159,11 @@
         NSString *comm = [alertView textFieldAtIndex:0].text;
         self.commentsToStore = comm;
     }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
 }
 
 /*

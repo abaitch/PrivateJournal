@@ -127,7 +127,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Video Entry" id="whp-Nr-wev">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Bo7-Wz-Wcv"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Bo7-Wz-Wcv">
+                                            <connections>
+                                                <action selector="userHitCancel:" destination="04f-Xy-LZf" id="cyq-Lp-QCF"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="0ye-FA-ZuZ">
                                             <connections>
                                                 <action selector="storeEntry:" destination="04f-Xy-LZf" id="9iW-Ic-gXn"/>
@@ -136,34 +140,45 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tap to add title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bqg-kz-Tsu">
-                                <rect key="frame" x="20" y="76" width="280" height="30"/>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQM-bB-Kft">
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXU-CW-PQG">
-                                <rect key="frame" x="11" y="509" width="299" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="+ Comment">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tap to add title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bqg-kz-Tsu">
+                                <rect key="frame" x="7" y="67" width="307" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXU-CW-PQG">
+                                <rect key="frame" x="7" y="105" width="307" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.98837129899999998" green="1" blue="0.99118078239999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="+ Comment">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="enterComments:" destination="04f-Xy-LZf" eventType="touchUpInside" id="KBq-di-PeV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="Bo7-Wz-Wcv" id="2WG-Z7-a0D"/>
+                        <outlet property="commentButton" destination="SXU-CW-PQG" id="IXs-tb-WOm"/>
                         <outlet property="saveButton" destination="0ye-FA-ZuZ" id="GdX-7h-azf"/>
                         <outlet property="titleField" destination="Bqg-kz-Tsu" id="yUU-hZ-GhM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahV-Uj-vyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773" y="-4"/>
+            <point key="canvasLocation" x="773" y="-46"/>
         </scene>
         <!--Photo Entry View Controller-->
         <scene sceneID="kTY-z3-E8h">
@@ -182,18 +197,17 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tap to add title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gdf-z5-BYs">
-                                <rect key="frame" x="20" y="77" width="280" height="30"/>
+                                <rect key="frame" x="6" y="68" width="309" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xO8-Cq-6wb">
-                                <rect key="frame" x="11" y="513" width="299" height="45"/>
+                                <rect key="frame" x="6" y="531" width="309" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.98756353509999995" green="1" blue="0.9815170567" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="+ Comment">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -233,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bf-gD-c4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773" y="-661"/>
+            <point key="canvasLocation" x="773" y="-773"/>
         </scene>
         <!--Audio Entry View Controller-->
         <scene sceneID="XkS-jf-dPx">
@@ -308,10 +322,14 @@
                                     <navigationItem title="Audio Entry" id="f7T-wc-Hzj">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="cPM-CG-bPD">
                                             <connections>
-                                                <action selector="userHitCancel:" destination="IPn-Ae-0Jp" id="2Sk-6h-mJy"/>
+                                                <action selector="userHitCancel:" destination="IPn-Ae-0Jp" id="H2M-rn-vCf"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="QQS-WK-9w5"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="QQS-WK-9w5">
+                                            <connections>
+                                                <action selector="storeEntry:" destination="IPn-Ae-0Jp" id="b7p-b9-S5D"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -319,13 +337,13 @@
                                 <rect key="frame" x="20" y="83" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Comments:" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZZ-y7-CSr">
                                 <rect key="frame" x="20" y="129" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gjn-YN-sxL">
                                 <rect key="frame" x="133" y="282" width="54" height="21"/>
