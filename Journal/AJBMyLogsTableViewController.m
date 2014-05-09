@@ -102,15 +102,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
 
-        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-            cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-        }
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }
     AJBEntry *temp = [_entryValues objectForKey:[NSString stringWithFormat:@"%d", (int)indexPath.row+1]];
-        cell.textLabel.text = [@"Log - " stringByAppendingString: [NSString stringWithFormat:@"%@ - %@", temp.fileType, temp.date]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    NSString *tempDate = [formatter stringFromDate:temp.date];
+    cell.textLabel.text = [temp.entryTitle stringByAppendingString: [NSString stringWithFormat:@" - %@", tempDate]];
     
     return cell;
 }
@@ -198,6 +200,9 @@
          destination.filePath = _filePathToPass;
          destination.fileType = _fileTypeToPass;
          destination.date = _dateToPass;
+         destination.videoController = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL fileURLWithPath:_filePathToPass]];
+         [destination.videoController.view setFrame:CGRectMake (0, 55, 320, 513)];
+         [destination.view addSubview:destination.videoController.view];
      } else if ([segue.identifier isEqualToString:@"viewAudio"]){
          AJBOLDLogAudioViewController *destination = (AJBOLDLogAudioViewController *) segue.destinationViewController;
          destination.entryTitle = _entryTitleToPass;

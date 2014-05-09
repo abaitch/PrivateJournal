@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.videoController play];
     // Do any additional setup after loading the view.
 }
 

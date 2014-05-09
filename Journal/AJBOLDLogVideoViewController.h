@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface AJBOLDLogVideoViewController : UIViewController
 
@@ -17,5 +19,6 @@
 @property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSString * fileType;
 @property (nonatomic, retain) NSDate * date;
+@property (strong, nonatomic) MPMoviePlayerController *videoController;
 
 @end
