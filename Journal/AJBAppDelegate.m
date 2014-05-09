@@ -9,6 +9,7 @@
 #import "AJBAppDelegate.h"
 #import "AJBEntry.h"
 #import "Entry.h"
+#import <Parse/Parse.h>
 
 @implementation AJBAppDelegate
 
@@ -22,6 +23,9 @@
     // Override point for customization after application launch.
     //self.window.backgroundColor = [UIColor whiteColor];
     //[self.window makeKeyAndVisible];
+    [Parse setApplicationId:@"QDSh6Qisfv7tKT3xR1DQH7Ds0b7Sx5WeCxZpGLz7"
+                  clientKey:@"mfunB1Vd16sHsUZ1z3BthGdz26EVQfkaxDilJB4k"];
+    
     return YES;
 }
 
@@ -128,6 +132,60 @@
     return fetchedResults;
 }
 
+/*
+ // add an entry using the wrapper
+ - (BOOL)addEntryFromWrapper:(AJBEntry *)entry
+ {
+ if (![self checkIfAlreadyRegistered:entry]) {
+ PFObject *entryToStore = [PFObject objectWithClassName:@"AJBEntry"];
+ [entryToStore setObject:entry.entryTitle forKey:@"entryTitle"];
+ [entryToStore setObject:[NSString stringWithFormat:@"%f",entry.latitude] forKey:@"latitude"];
+ [entryToStore setObject:[NSString stringWithFormat:@"%f",entry.longitude] forKey:@"longitude"];
+ [entryToStore setObject:entry.filePath forKey:@"filePath"];
+ [entryToStore setObject:entry.fileType forKey:@"fileType"];
+ [entryToStore setObject:entry.date forKey:@"date"];
+ [entryToStore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+ 
+ if (!error) {
+ // Show success message
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Complete" message:@"Successfully saved the recipe" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+ [alert show];
+ 
+ // Notify table view to reload the recipes from Parse cloud
+ //[[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTable" object:self];
+ 
+ } else {
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Failure" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+ [alert show];
+ 
+ }
+ 
+ }];
+ return YES;
+ }
+ 
+ return NO;
+ }
+ 
+ // Check if an entry is already stored
+ - (BOOL)checkIfAlreadyRegistered:(AJBEntry *)entry
+ {
+ int ocount = 0;
+ PFQuery *query = [PFQuery queryWithClassName:@"AJBEntry"];
+ [query whereKey:@"filePath" equalTo:entry.filePath];
+ [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+ if (!error) {
+ // The find succeeded.
+ NSLog(@"Successfully retrieved %lu users.", (unsigned long)objects.count);
+ ocount = (int)objects.count;
+ } else {
+ // Log details of the failure
+ NSLog(@"Error: %@ %@", error, [error userInfo]);
+ }
+ }];
+ return ocount > 0;
+ }
+ */
 #pragma mark - Core Data stack
 
 // Returns the managed object context for the application.
@@ -137,7 +195,7 @@
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
-    
+ 
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
         _managedObjectContext = [[NSManagedObjectContext alloc] init];

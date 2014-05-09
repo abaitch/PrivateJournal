@@ -296,12 +296,14 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="PPD-xX-8GP" kind="modal" identifier="viewVideo" id="Ocz-0i-RIh"/>
+                        <segue destination="PPD-xX-8GP" kind="modal" identifier="viewVideo" id="KVU-2n-P8w"/>
+                        <segue destination="vdj-23-xfc" kind="modal" identifier="viewPhoto" id="6j3-iC-QOQ"/>
+                        <segue destination="A3a-Vb-dw3" kind="modal" identifier="viewAudio" id="wfM-xp-bAQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YfY-sO-uhT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189" y="741"/>
+            <point key="canvasLocation" x="179" y="821"/>
         </scene>
         <!--Log Photo View Controller-->
         <scene sceneID="1Zf-Qo-pPs">
@@ -328,9 +330,6 @@
                                                 <state key="normal" title="Back">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <segue destination="VPu-Ge-7ij" kind="modal" identifier="viewPhoto" id="4YN-Em-8CJ"/>
-                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -391,9 +390,6 @@
                                                 <state key="normal" title="Back">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <segue destination="VPu-Ge-7ij" kind="modal" identifier="viewAudio" id="QSm-cS-wux"/>
-                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -584,16 +580,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="A Private Log" id="tWl-XG-cP6">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="5vk-xg-iYm">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cMx-44-b9L">
-                                                <rect key="frame" x="16" y="5" width="71" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="Back">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="dkW-cu-17w"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -619,7 +606,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="QSm-cS-wux"/>
-    </inferredMetricsTieBreakers>
 </document>

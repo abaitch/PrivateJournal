@@ -15,7 +15,6 @@
 @interface AJBMyLogsTableViewController ()
 
 @property(strong,nonatomic)NSMutableDictionary *entryValues;
-@property(strong,nonatomic)NSDictionary *entryValuesDict;
 @property (nonatomic) int numRowsToShow;
 
 //to pass through
@@ -64,7 +63,7 @@
     self.entryValues = [[NSMutableDictionary alloc] init];
     for (AJBEntry *e in entriesArray ) {
         [self.entryValues setObject:e forKey:[NSString stringWithFormat: @"%d", _numRowsToShow]];
-        _numRowsToShow = _numRowsToShow +1;
+        _numRowsToShow++;
     }
     
     NSLog(@"%@", _entryValues);
@@ -108,8 +107,8 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         }
-    NSDictionary *subdict = [_entryValuesDict objectForKey:[NSString stringWithFormat:@"%d", (int)indexPath.row + 1]];
-        cell.textLabel.text = [@"Log - " stringByAppendingString: [NSString stringWithFormat:@"%@ - %@", [self.entryValues objectForKey:@"fileType"], [subdict objectForKey:@"entryTitle"]]];
+    AJBEntry *temp = [_entryValues objectForKey:[NSString stringWithFormat:@"%d", (int)indexPath.row]];
+        cell.textLabel.text = [@"Log - " stringByAppendingString: [NSString stringWithFormat:@"%@ - %@", temp.fileType, temp.date]];
     
     return cell;
 }
@@ -157,20 +156,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    _entryValuesDict = [_entryValues objectForKey: [NSString stringWithFormat: @"%d", (int)indexPath.row+1]];
-    _entryTitleToPass = [NSString stringWithFormat:@"%@", [self.entryValues objectForKey:@"entryTitle"]];
-    _commentsToPass = [NSString stringWithFormat:@"%@", [self.entryValues objectForKey:@"comments"]];
-    _latitudeToPass = [[self.entryValues objectForKey:@"latitide"] floatValue];
-    _longitudeToPass = [[self.entryValues objectForKey:@"longitude"] floatValue];
-    _filePathToPass = [NSString stringWithFormat:@"%@", [self.entryValues objectForKey:@"filePath"]];
-    _fileTypeToPass = [NSString stringWithFormat:@"%@", [self.entryValues objectForKey:@"fileType"]];
-    _dateToPass = [self.entryValues objectForKey:@"date"];
+    AJBEntry *temp = [_entryValues objectForKey: [NSString stringWithFormat: @"%d", (int)indexPath.row+1]];
+    _entryTitleToPass = temp.entryTitle;
+    _commentsToPass = temp.comments;
+    _latitudeToPass = temp.latitude;
+    _longitudeToPass = temp.longitude;
+    _filePathToPass = temp.filePath;
+    _fileTypeToPass = temp.fileType;
+    _dateToPass = temp.date;
+    NSLog(_entryTitleToPass);
     
-    if ([_entryValues.fileType  isEqualToString: @"photo"]) {
+    if ([temp.fileType  isEqualToString: @"photo"]) {
         [self performSegueWithIdentifier:@"viewPhoto" sender:self];
-    } else if ([_entryValues.fileType  isEqualToString: @"video"]) {
+    } else if ([temp.fileType  isEqualToString: @"video"]) {
         [self performSegueWithIdentifier:@"viewVideo" sender:self];
-    } else if ([_entryValues.fileType  isEqualToString: @"audio"]) {
+    } else if ([temp.fileType  isEqualToString: @"audio"]) {
         [self performSegueWithIdentifier:@"viewAudio" sender:self];
     }
 }
