@@ -9,6 +9,7 @@
 #import "AJBOLDLogAudioViewController.h"
 
 @interface AJBOLDLogAudioViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 @end
 
@@ -35,6 +36,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction) userHitDone:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 

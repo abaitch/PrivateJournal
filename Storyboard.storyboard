@@ -55,7 +55,7 @@
                                 </state>
                                 <connections>
                                     <action selector="gatewayTapped:" destination="kxY-cm-UdM" eventType="touchUpInside" id="wI6-sj-rtS"/>
-                                    <segue destination="VPu-Ge-7ij" kind="modal" modalTransitionStyle="coverVertical" id="jSO-1p-mGW"/>
+                                    <segue destination="Uc3-6L-mdn" kind="modal" modalTransitionStyle="flipHorizontal" id="o4J-Dd-vQ7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FzK-d0-vvl">
@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vq2-le-bEb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189" y="-46"/>
+            <point key="canvasLocation" x="-777" y="2"/>
         </scene>
         <!--Video Entry View Controller-->
         <scene sceneID="BO5-aI-sS8">
@@ -179,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahV-Uj-vyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773" y="-46"/>
+            <point key="canvasLocation" x="-239" y="-374"/>
         </scene>
         <!--Photo Entry View Controller-->
         <scene sceneID="kTY-z3-E8h">
@@ -248,9 +248,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bf-gD-c4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773" y="-773"/>
+            <point key="canvasLocation" x="-239" y="-1049"/>
         </scene>
-        <!--My Logs Table View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="eqb-1g-7cz">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Uc3-6L-mdn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z0O-r0-Weg">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="VPu-Ge-7ij" kind="relationship" relationship="rootViewController" id="tOc-sN-Ki1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ji-qN-RCT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-638" y="1022"/>
+        </scene>
+        <!--My Logs Table View Controller - My Private Logs-->
         <scene sceneID="yMw-rJ-8Ui">
             <objects>
                 <tableViewController id="VPu-Ge-7ij" customClass="AJBMyLogsTableViewController" sceneMemberID="viewController">
@@ -258,30 +273,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="Zzb-Og-ZyM">
-                            <rect key="frame" x="0.0" y="66" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="My Private Logs" id="f3k-FY-ZlW">
-                                    <barButtonItem key="leftBarButtonItem" style="plain" id="eDR-I6-6W4">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="c4m-oB-56i">
-                                            <rect key="frame" x="16" y="5" width="71" height="33"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" title="Back">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="kxY-cm-UdM" kind="modal" id="uIm-5J-6jq"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Yo3-Zh-Tf7">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yo3-Zh-Tf7" id="r3i-d0-lZS">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -295,7 +289,15 @@
                             <outlet property="delegate" destination="VPu-Ge-7ij" id="ded-pW-sEg"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="My Private Logs" id="XhQ-Yv-N4u">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="qQZ-wI-VdZ">
+                            <connections>
+                                <action selector="userHitBack:" destination="VPu-Ge-7ij" id="S3e-wv-Q2O"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="qQZ-wI-VdZ" id="SCd-Mj-s2l"/>
                         <segue destination="PPD-xX-8GP" kind="modal" identifier="viewVideo" id="KVU-2n-P8w"/>
                         <segue destination="vdj-23-xfc" kind="modal" identifier="viewPhoto" id="6j3-iC-QOQ"/>
                         <segue destination="A3a-Vb-dw3" kind="modal" identifier="viewAudio" id="wfM-xp-bAQ"/>
@@ -303,7 +305,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YfY-sO-uhT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="179" y="821"/>
+            <point key="canvasLocation" x="-251" y="1037"/>
         </scene>
         <!--Log Photo View Controller-->
         <scene sceneID="1Zf-Qo-pPs">
@@ -321,16 +323,11 @@
                                 <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="A Private Log" id="AJl-di-bdf">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="QEe-u1-ByY">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="d5M-g1-kwu">
-                                                <rect key="frame" x="16" y="5" width="71" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="Back">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
+                                    <navigationItem id="AJl-di-bdf">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="1H3-0y-9Vr">
+                                            <connections>
+                                                <action selector="userHitDone:" destination="vdj-23-xfc" id="SXu-7e-nEZ"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -345,25 +342,32 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63o-Kw-YVR">
-                                <rect key="frame" x="26" y="487" width="254" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn8-Ge-6JM">
+                                <rect key="frame" x="26" y="482" width="254" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn8-Ge-6JM">
-                                <rect key="frame" x="26" y="521" width="254" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iux-QO-z4z">
+                                <rect key="frame" x="70" y="22" width="166" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="commentsLabel" destination="tn8-Ge-6JM" id="X2h-d3-wjT"/>
+                        <outlet property="dateLabel" destination="xtA-Je-PHa" id="JKl-GW-Pth"/>
+                        <outlet property="doneButton" destination="1H3-0y-9Vr" id="u7z-kh-Rl4"/>
+                        <outlet property="entryTitleLabel" destination="Iux-QO-z4z" id="SQl-Je-7Z5"/>
+                        <outlet property="imageView" destination="FZT-cw-MDh" id="N14-3Y-65r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="605-Ye-5LY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-251" y="1650"/>
+            <point key="canvasLocation" x="245" y="10"/>
         </scene>
         <!--Log Audio View Controller-->
         <scene sceneID="Tlb-Vg-NNY">
@@ -382,15 +386,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="A Private Log" id="mZu-2b-aSe">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="x96-zr-gYl">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PW2-Fw-Jav">
-                                                <rect key="frame" x="16" y="5" width="71" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal" title="Back">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="lE2-Em-U5S">
+                                            <connections>
+                                                <action selector="userHitDone:" destination="A3a-Vb-dw3" id="s4e-l8-fmQ"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -416,10 +415,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="doneButton" destination="lE2-Em-U5S" id="I3j-3h-ICH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8uC-kY-yHA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1075" y="1626"/>
+            <point key="canvasLocation" x="265" y="1454"/>
         </scene>
         <!--Audio Entry View Controller-->
         <scene sceneID="XkS-jf-dPx">
@@ -539,7 +541,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qU4-JR-UiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773" y="660"/>
+            <point key="canvasLocation" x="-239" y="304"/>
         </scene>
         <!--Log Video View Controller-->
         <scene sceneID="t9z-Dm-lot">
@@ -580,7 +582,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="A Private Log" id="tWl-XG-cP6">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="dkW-cu-17w"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="dkW-cu-17w">
+                                            <connections>
+                                                <action selector="userHitDone:" destination="PPD-xX-8GP" id="voc-mL-2Xm"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -588,10 +594,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="QVk-UH-fT7"/>
+                    <connections>
+                        <outlet property="doneButton" destination="dkW-cu-17w" id="5MW-nc-UM1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="em8-xA-paI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="418" y="1650"/>
+            <point key="canvasLocation" x="245" y="726"/>
         </scene>
     </scenes>
     <resources>

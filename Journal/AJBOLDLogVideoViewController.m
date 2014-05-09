@@ -9,6 +9,7 @@
 #import "AJBOLDLogVideoViewController.h"
 
 @interface AJBOLDLogVideoViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 @end
 
@@ -33,6 +34,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction) userHitDone:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

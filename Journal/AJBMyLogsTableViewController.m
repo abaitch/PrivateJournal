@@ -13,6 +13,7 @@
 #import "AJBOLDLogAudioViewController.h"
 
 @interface AJBMyLogsTableViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 
 @property(strong,nonatomic)NSMutableDictionary *entryValues;
 @property (nonatomic) int numRowsToShow;
@@ -62,8 +63,9 @@
     NSArray *entriesArray = [self.appDelegate allEntries];
     self.entryValues = [[NSMutableDictionary alloc] init];
     for (AJBEntry *e in entriesArray ) {
-        [self.entryValues setObject:e forKey:[NSString stringWithFormat: @"%d", _numRowsToShow]];
         _numRowsToShow++;
+        [self.entryValues setObject:e forKey:[NSString stringWithFormat: @"%d", _numRowsToShow]];
+        
     }
     
     NSLog(@"%@", _entryValues);
@@ -107,7 +109,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         }
-    AJBEntry *temp = [_entryValues objectForKey:[NSString stringWithFormat:@"%d", (int)indexPath.row]];
+    AJBEntry *temp = [_entryValues objectForKey:[NSString stringWithFormat:@"%d", (int)indexPath.row+1]];
         cell.textLabel.text = [@"Log - " stringByAppendingString: [NSString stringWithFormat:@"%@ - %@", temp.fileType, temp.date]];
     
     return cell;
@@ -207,5 +209,9 @@
          destination.date = _dateToPass;
      }
  }
+
+- (IBAction) userHitBack:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

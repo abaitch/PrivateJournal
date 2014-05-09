@@ -9,6 +9,12 @@
 #import "AJBOLDLogPhotoViewController.h"
 
 @interface AJBOLDLogPhotoViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *entryTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -26,6 +32,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _entryTitleLabel.text = _entryTitle;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    _dateLabel.text = [formatter stringFromDate:_date];
+    _commentsLabel.text = _comments;
+    _imageView.image = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@",_filePath]];
     // Do any additional setup after loading the view.
 }
 
@@ -35,6 +46,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction) userHitDone:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 
