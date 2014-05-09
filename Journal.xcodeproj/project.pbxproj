@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17CF59AF191C472000A513E8 /* AJBMyLogsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59AE191C472000A513E8 /* AJBMyLogsTableViewController.m */; };
+		17CF59B2191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59B1191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.m */; };
+		17CF59B5191D43A300A513E8 /* AJBOLDLogVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59B4191D43A300A513E8 /* AJBOLDLogVideoViewController.m */; };
+		17CF59B8191D43B600A513E8 /* AJBOLDLogAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59B7191D43B600A513E8 /* AJBOLDLogAudioViewController.m */; };
 		6A1A035518FF149000F9C720 /* AJBEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A035418FF149000F9C720 /* AJBEntry.m */; };
 		6A1A035818FF15AF00F9C720 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A035718FF15AF00F9C720 /* Entry.m */; };
 		6A9E602218FEFA630080D740 /* AJBStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9E602118FEFA630080D740 /* AJBStartViewController.m */; };
@@ -43,6 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17CF59AD191C472000A513E8 /* AJBMyLogsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBMyLogsTableViewController.h; sourceTree = "<group>"; };
+		17CF59AE191C472000A513E8 /* AJBMyLogsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBMyLogsTableViewController.m; sourceTree = "<group>"; };
+		17CF59B0191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBOLDLogPhotoViewController.h; sourceTree = "<group>"; };
+		17CF59B1191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBOLDLogPhotoViewController.m; sourceTree = "<group>"; };
+		17CF59B3191D43A300A513E8 /* AJBOLDLogVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBOLDLogVideoViewController.h; sourceTree = "<group>"; };
+		17CF59B4191D43A300A513E8 /* AJBOLDLogVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBOLDLogVideoViewController.m; sourceTree = "<group>"; };
+		17CF59B6191D43B600A513E8 /* AJBOLDLogAudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBOLDLogAudioViewController.h; sourceTree = "<group>"; };
+		17CF59B7191D43B600A513E8 /* AJBOLDLogAudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBOLDLogAudioViewController.m; sourceTree = "<group>"; };
 		6A1A035318FF149000F9C720 /* AJBEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBEntry.h; sourceTree = "<group>"; };
 		6A1A035418FF149000F9C720 /* AJBEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBEntry.m; sourceTree = "<group>"; };
 		6A1A035618FF15AF00F9C720 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
@@ -139,8 +151,16 @@
 		6AB6A8A918FEEDCF00145111 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
+				17CF59B0191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.h */,
+				17CF59B1191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.m */,
+				17CF59B3191D43A300A513E8 /* AJBOLDLogVideoViewController.h */,
+				17CF59B4191D43A300A513E8 /* AJBOLDLogVideoViewController.m */,
+				17CF59B6191D43B600A513E8 /* AJBOLDLogAudioViewController.h */,
+				17CF59B7191D43B600A513E8 /* AJBOLDLogAudioViewController.m */,
 				6A9E602018FEFA630080D740 /* AJBStartViewController.h */,
 				6A9E602118FEFA630080D740 /* AJBStartViewController.m */,
+				17CF59AD191C472000A513E8 /* AJBMyLogsTableViewController.h */,
+				17CF59AE191C472000A513E8 /* AJBMyLogsTableViewController.m */,
 				6AED75C119199A9C008321F7 /* AJBAudioEntryViewController.h */,
 				6AED75C219199A9C008321F7 /* AJBAudioEntryViewController.m */,
 				6AB6A8D618FEEDE800145111 /* Storyboard.storyboard */,
@@ -295,10 +315,14 @@
 				6A1A035818FF15AF00F9C720 /* Entry.m in Sources */,
 				6AB6A8B718FEEDCF00145111 /* Journal.xcdatamodeld in Sources */,
 				6A9E602218FEFA630080D740 /* AJBStartViewController.m in Sources */,
+				17CF59B5191D43A300A513E8 /* AJBOLDLogVideoViewController.m in Sources */,
 				6A1A035518FF149000F9C720 /* AJBEntry.m in Sources */,
+				17CF59AF191C472000A513E8 /* AJBMyLogsTableViewController.m in Sources */,
+				17CF59B8191D43B600A513E8 /* AJBOLDLogAudioViewController.m in Sources */,
 				6AC100A319189D6600E4BCBC /* AJBVideoEntryViewController.m in Sources */,
 				6AB6A8B418FEEDCF00145111 /* AJBAppDelegate.m in Sources */,
 				6AB6A8B018FEEDCF00145111 /* main.m in Sources */,
+				17CF59B2191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,8 +443,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Journal/Journal-Prefix.pch";
 				INFOPLIST_FILE = "Journal/Journal-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8FB1B517-4292-48B3-94FD-14B3E42C4C23";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -434,8 +459,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Journal/Journal-Prefix.pch";
 				INFOPLIST_FILE = "Journal/Journal-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8FB1B517-4292-48B3-94FD-14B3E42C4C23";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
