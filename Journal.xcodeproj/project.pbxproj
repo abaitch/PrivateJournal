@@ -11,6 +11,7 @@
 		171FE052191DE4B0002445B8 /* AJBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171FE051191DE4B0002445B8 /* AJBLoginViewController.m */; };
 		17929163191DD0EF00D6D777 /* AJBRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17929162191DD0EF00D6D777 /* AJBRegisterViewController.m */; };
 		17929168191DDA6E00D6D777 /* AJBPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17929167191DDA6E00D6D777 /* AJBPasscodeViewController.m */; };
+		17C1A20D191EC636001C8552 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C1A20C191EC636001C8552 /* Parse.framework */; };
 		17CF59AF191C472000A513E8 /* AJBMyLogsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59AE191C472000A513E8 /* AJBMyLogsTableViewController.m */; };
 		17CF59B2191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59B1191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.m */; };
 		17CF59B5191D43A300A513E8 /* AJBOLDLogVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59B4191D43A300A513E8 /* AJBOLDLogVideoViewController.m */; };
@@ -66,6 +67,7 @@
 		17929164191DD59C00D6D777 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../Downloads/ParsePlatform-LoginAndSignUpTutorial-0710943/Parse.framework"; sourceTree = "<group>"; };
 		17929166191DDA6E00D6D777 /* AJBPasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBPasscodeViewController.h; sourceTree = "<group>"; };
 		17929167191DDA6E00D6D777 /* AJBPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBPasscodeViewController.m; sourceTree = "<group>"; };
+		17C1A20C191EC636001C8552 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		17CF59AD191C472000A513E8 /* AJBMyLogsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBMyLogsTableViewController.h; sourceTree = "<group>"; };
 		17CF59AE191C472000A513E8 /* AJBMyLogsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBMyLogsTableViewController.m; sourceTree = "<group>"; };
 		17CF59B0191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBOLDLogPhotoViewController.h; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17C1A20D191EC636001C8552 /* Parse.framework in Frameworks */,
 				171FE04F191DDDF3002445B8 /* Parse.framework in Frameworks */,
 				6A29D3C0191D5B1500E39F53 /* SystemConfiguration.framework in Frameworks */,
 				6A29D3BE191D5B0900E39F53 /* StoreKit.framework in Frameworks */,
@@ -175,6 +178,7 @@
 		6AB6A8A018FEEDCF00145111 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17C1A20C191EC636001C8552 /* Parse.framework */,
 				17929164191DD59C00D6D777 /* Parse.framework */,
 				6A29D3BF191D5B1500E39F53 /* SystemConfiguration.framework */,
 				6A29D3BD191D5B0900E39F53 /* StoreKit.framework */,
@@ -504,6 +508,7 @@
 					"1/Downloads/ParsePlatform-LoginAndSignUpTutorial-0710943",
 					/Users/HunterHorsley,
 					"1/Downloads/ParsePlatform-LoginAndSignUpTutorial-0710943",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Journal/Journal-Prefix.pch";
@@ -529,6 +534,7 @@
 					"1/Downloads/ParsePlatform-LoginAndSignUpTutorial-0710943",
 					/Users/HunterHorsley,
 					"1/Downloads/ParsePlatform-LoginAndSignUpTutorial-0710943",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Journal/Journal-Prefix.pch";
