@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		171FE04F191DDDF3002445B8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17929164191DD59C00D6D777 /* Parse.framework */; };
+		171FE052191DE4B0002445B8 /* AJBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171FE051191DE4B0002445B8 /* AJBLoginViewController.m */; };
+		17929163191DD0EF00D6D777 /* AJBRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17929162191DD0EF00D6D777 /* AJBRegisterViewController.m */; };
+		17929168191DDA6E00D6D777 /* AJBPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17929167191DDA6E00D6D777 /* AJBPasscodeViewController.m */; };
 		17CF59AF191C472000A513E8 /* AJBMyLogsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59AE191C472000A513E8 /* AJBMyLogsTableViewController.m */; };
 		17CF59B2191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59B1191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.m */; };
 		17CF59B5191D43A300A513E8 /* AJBOLDLogVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59B4191D43A300A513E8 /* AJBOLDLogVideoViewController.m */; };
 		17CF59B8191D43B600A513E8 /* AJBOLDLogAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CF59B7191D43B600A513E8 /* AJBOLDLogAudioViewController.m */; };
 		6A1A035518FF149000F9C720 /* AJBEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A035418FF149000F9C720 /* AJBEntry.m */; };
 		6A1A035818FF15AF00F9C720 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A1A035718FF15AF00F9C720 /* Entry.m */; };
-		6A29D3B0191D5AB000E39F53 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A29D3AF191D5AB000E39F53 /* Parse.framework */; };
 		6A29D3B2191D5AC300E39F53 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A29D3B1191D5AC300E39F53 /* AudioToolbox.framework */; };
 		6A29D3B4191D5AD900E39F53 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A29D3B3191D5AD900E39F53 /* CFNetwork.framework */; };
 		6A29D3B6191D5AE800E39F53 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A29D3B5191D5AE800E39F53 /* CoreLocation.framework */; };
@@ -56,6 +59,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		171FE050191DE4B0002445B8 /* AJBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBLoginViewController.h; sourceTree = "<group>"; };
+		171FE051191DE4B0002445B8 /* AJBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBLoginViewController.m; sourceTree = "<group>"; };
+		17929161191DD0EF00D6D777 /* AJBRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBRegisterViewController.h; sourceTree = "<group>"; };
+		17929162191DD0EF00D6D777 /* AJBRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBRegisterViewController.m; sourceTree = "<group>"; };
+		17929164191DD59C00D6D777 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../Downloads/ParsePlatform-LoginAndSignUpTutorial-0710943/Parse.framework"; sourceTree = "<group>"; };
+		17929166191DDA6E00D6D777 /* AJBPasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBPasscodeViewController.h; sourceTree = "<group>"; };
+		17929167191DDA6E00D6D777 /* AJBPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBPasscodeViewController.m; sourceTree = "<group>"; };
 		17CF59AD191C472000A513E8 /* AJBMyLogsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBMyLogsTableViewController.h; sourceTree = "<group>"; };
 		17CF59AE191C472000A513E8 /* AJBMyLogsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AJBMyLogsTableViewController.m; sourceTree = "<group>"; };
 		17CF59B0191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AJBOLDLogPhotoViewController.h; sourceTree = "<group>"; };
@@ -112,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				171FE04F191DDDF3002445B8 /* Parse.framework in Frameworks */,
 				6A29D3C0191D5B1500E39F53 /* SystemConfiguration.framework in Frameworks */,
 				6A29D3BE191D5B0900E39F53 /* StoreKit.framework in Frameworks */,
 				6A29D3BC191D5B0200E39F53 /* Security.framework in Frameworks */,
@@ -120,7 +131,6 @@
 				6A29D3B6191D5AE800E39F53 /* CoreLocation.framework in Frameworks */,
 				6A29D3B4191D5AD900E39F53 /* CFNetwork.framework in Frameworks */,
 				6A29D3B2191D5AC300E39F53 /* AudioToolbox.framework in Frameworks */,
-				6A29D3B0191D5AB000E39F53 /* Parse.framework in Frameworks */,
 				6AED75C01919995D008321F7 /* AVFoundation.framework in Frameworks */,
 				6AB6A8A418FEEDCF00145111 /* CoreGraphics.framework in Frameworks */,
 				6AB6A8A818FEEDCF00145111 /* CoreData.framework in Frameworks */,
@@ -165,6 +175,7 @@
 		6AB6A8A018FEEDCF00145111 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17929164191DD59C00D6D777 /* Parse.framework */,
 				6A29D3BF191D5B1500E39F53 /* SystemConfiguration.framework */,
 				6A29D3BD191D5B0900E39F53 /* StoreKit.framework */,
 				6A29D3BB191D5B0200E39F53 /* Security.framework */,
@@ -210,6 +221,12 @@
 				6AB6A8B218FEEDCF00145111 /* AJBAppDelegate.h */,
 				6AB6A8B318FEEDCF00145111 /* AJBAppDelegate.m */,
 				6AB6A8D618FEEDE800145111 /* Storyboard.storyboard */,
+				171FE050191DE4B0002445B8 /* AJBLoginViewController.h */,
+				171FE051191DE4B0002445B8 /* AJBLoginViewController.m */,
+				17929166191DDA6E00D6D777 /* AJBPasscodeViewController.h */,
+				17929167191DDA6E00D6D777 /* AJBPasscodeViewController.m */,
+				17929161191DD0EF00D6D777 /* AJBRegisterViewController.h */,
+				17929162191DD0EF00D6D777 /* AJBRegisterViewController.m */,
 				6AB6A8B818FEEDCF00145111 /* Images.xcassets */,
 				6AB6A8B518FEEDCF00145111 /* Journal.xcdatamodeld */,
 				6AB6A8AA18FEEDCF00145111 /* Supporting Files */,
@@ -295,7 +312,7 @@
 				ORGANIZATIONNAME = "Adam Baitch";
 				TargetAttributes = {
 					6AB6A89D18FEEDCF00145111 = {
-						DevelopmentTeam = REZ7GCBK6F;
+						DevelopmentTeam = 4NQA36W7LW;
 					};
 					6AB6A8BD18FEEDCF00145111 = {
 						TestTargetID = 6AB6A89D18FEEDCF00145111;
@@ -350,15 +367,18 @@
 				6AD81DE51908A62100F50525 /* AJBPhotoEntryViewController.m in Sources */,
 				6A1A035818FF15AF00F9C720 /* Entry.m in Sources */,
 				6AB6A8B718FEEDCF00145111 /* Journal.xcdatamodeld in Sources */,
+				17929163191DD0EF00D6D777 /* AJBRegisterViewController.m in Sources */,
 				6A9E602218FEFA630080D740 /* AJBStartViewController.m in Sources */,
 				17CF59B5191D43A300A513E8 /* AJBOLDLogVideoViewController.m in Sources */,
 				6A1A035518FF149000F9C720 /* AJBEntry.m in Sources */,
+				171FE052191DE4B0002445B8 /* AJBLoginViewController.m in Sources */,
 				17CF59AF191C472000A513E8 /* AJBMyLogsTableViewController.m in Sources */,
 				17CF59B8191D43B600A513E8 /* AJBOLDLogAudioViewController.m in Sources */,
 				6AC100A319189D6600E4BCBC /* AJBVideoEntryViewController.m in Sources */,
 				6AB6A8B418FEEDCF00145111 /* AJBAppDelegate.m in Sources */,
 				6AB6A8B018FEEDCF00145111 /* main.m in Sources */,
 				17CF59B2191D3CFE00A513E8 /* AJBOLDLogPhotoViewController.m in Sources */,
+				17929168191DDA6E00D6D777 /* AJBPasscodeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +500,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ajb32/Downloads,
+					/Users/HunterHorsley,
+					"1/Downloads/ParsePlatform-LoginAndSignUpTutorial-0710943",
+					/Users/HunterHorsley,
+					"1/Downloads/ParsePlatform-LoginAndSignUpTutorial-0710943",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Journal/Journal-Prefix.pch";
@@ -501,6 +525,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/ajb32/Downloads,
+					/Users/HunterHorsley,
+					"1/Downloads/ParsePlatform-LoginAndSignUpTutorial-0710943",
+					/Users/HunterHorsley,
+					"1/Downloads/ParsePlatform-LoginAndSignUpTutorial-0710943",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Journal/Journal-Prefix.pch";

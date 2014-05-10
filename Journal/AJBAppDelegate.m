@@ -79,20 +79,27 @@
 - (BOOL)addEntryFromWrapper:(AJBEntry *)entry
 {
     if (![self checkIfAlreadyRegistered:entry]) {
-        Entry *entryToStore = [NSEntityDescription insertNewObjectForEntityForName:@"Entry"
-                                                          inManagedObjectContext:self.managedObjectContext];
-        entryToStore.entryTitle = entry.entryTitle;
-        entryToStore.latitude = [NSNumber numberWithFloat:entry.latitude];
-        entryToStore.longitude = [NSNumber numberWithFloat:entry.longitude];
-        entryToStore.filePath = entry.filePath;
-        entryToStore.fileType = entry.fileType;
-        entryToStore.date = entry.date;
-        
-        NSError *error;
-        if (![self.managedObjectContext save:&error]) {     //committing changes
-            return NO;
-        }
-        
+        PFObject *entryToStore = [PFObject objectWithClassName:@"AJBEntry"];
+        [entryToStore setObject:entry.entryTitle forKey:@"entryTitle"];
+        [entryToStore setObject:[NSString stringWithFormat:@"%f", entry.latitude] forKey:@"latitude"];
+        [entryToStore setObject:[NSString stringWithFormat:@"%f", entry.longitude] forKey:@"longitude"];
+        [entryToStore setObject:[NSString stringWithFormat:@"%f", entry.latitude] forKey:@"latitude"];
+        [entryToStore setObject:entry.filePath forKey:@"filePath"];
+        [entryToStore setObject:entry.date forKey:@"date"];
+        [entryToStore setObject:[PFUser currentUser] forKey:@"owner"];
+        [entryToStore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                // Show success message
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Complete" message:@"Successfully saved the entry" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Upload Failure" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+                
+            }
+            
+        }];
         return YES;
     }
     
@@ -102,34 +109,26 @@
 // Check if an entry is already stored
 - (BOOL)checkIfAlreadyRegistered:(AJBEntry *)entry
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry"
-                                              inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"entryTitle == %@ AND date == %@ AND latitude == %f AND longitude == %f AND fileType == %@" , entry.entryTitle, entry.date, entry.latitude, entry.longitude, entry.fileType];
-    fetchRequest.entity = entity;
-    
-    NSError *error;
-    NSArray *fetchedResults = [self.managedObjectContext
-                               executeFetchRequest:fetchRequest
-                               error:&error];
-    
-    return [fetchedResults count] > 0;
+    return NO;
 }
 
 // array of all the entries stored in Core Data
 - (NSArray *)allEntries
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Entry"
-                                              inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.entity = entity;
-    
-    NSError *error;
-    NSArray *fetchedResults = [self.managedObjectContext
-                               executeFetchRequest:fetchRequest
-                               error:&error];
-    
-    return fetchedResults;
+    NSMutableArray *fetched = [NSMutableArray array];
+    PFQuery *query = [PFQuery queryWithClassName:@"AJBEntry"];
+    [query whereKey:@"owner" equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded. Add the returned objects to allObjects
+            [fetched addObjectsFromArray:objects];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    NSLog(@"array: %@", fetched);
+    return fetched;
 }
 
 /*
