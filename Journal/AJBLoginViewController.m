@@ -43,6 +43,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([PFUser currentUser] != nil) {
+        [self performSegueWithIdentifier:@"LoginInitialSuccess" sender:self];
+    }
     // Do any additional setup after loading the view.
 }
 

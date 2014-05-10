@@ -11,6 +11,7 @@
 #import "AJBOLDLogPhotoViewController.h"
 #import "AJBOLDLogVideoViewController.h"
 #import "AJBOLDLogAudioViewController.h"
+#import <Parse/Parse.h>
 
 @interface AJBMyLogsTableViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
@@ -60,16 +61,35 @@
     [super viewDidLoad];
     _numRowsToShow = 0;
     
-    NSArray *entriesArray = [self.appDelegate allEntries];
-    self.entryValues = [[NSMutableDictionary alloc] init];
-    for (AJBEntry *e in entriesArray ) {
-        _numRowsToShow++;
-        [self.entryValues setObject:e forKey:[NSString stringWithFormat: @"%d", _numRowsToShow]];
-        
-    }
-    
-    NSLog(@"%@", _entryValues);
-    
+    NSMutableArray *fetched = [NSMutableArray array];
+    PFQuery *query = [PFQuery queryWithClassName:@"AJBEntry"];
+    [query whereKey:@"owner" equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded. Add the returned objects to allObjects
+            [fetched addObjectsFromArray:objects];
+            self.entryValues = [[NSMutableDictionary alloc] init];
+            NSLog(@"%@", fetched);
+            for (PFObject *entry in fetched ) {
+                AJBEntry *e = [[AJBEntry alloc] init];
+                e.entryTitle = [entry objectForKey:@"entryTitle"];
+                e.comments = [entry objectForKey:@"comments"];
+                e.latitude = [[entry objectForKey:@"latitude"] floatValue];
+                e.longitude = [[entry objectForKey:@"longitude"] floatValue];
+                e.filePath = [entry objectForKey:@"filePath"];
+                e.fileType = [entry objectForKey:@"fileType"];
+                e.date = [entry objectForKey:@"date"];
+                _numRowsToShow++;
+                [self.entryValues setObject:e forKey:[NSString stringWithFormat: @"%d", _numRowsToShow]];
+            }
+            NSLog(@"%@", _entryValues);
+            [self.tableView reloadData];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -113,7 +133,6 @@
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     NSString *tempDate = [formatter stringFromDate:temp.date];
     cell.textLabel.text = [temp.entryTitle stringByAppendingString: [NSString stringWithFormat:@" - %@", tempDate]];
-    
     return cell;
 }
 
@@ -168,7 +187,6 @@
     _filePathToPass = temp.filePath;
     _fileTypeToPass = temp.fileType;
     _dateToPass = temp.date;
-    NSLog(_entryTitleToPass);
     
     if ([temp.fileType  isEqualToString: @"photo"]) {
         [self performSegueWithIdentifier:@"viewPhoto" sender:self];

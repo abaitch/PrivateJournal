@@ -85,6 +85,7 @@
         [entryToStore setObject:[NSString stringWithFormat:@"%f", entry.longitude] forKey:@"longitude"];
         [entryToStore setObject:[NSString stringWithFormat:@"%f", entry.latitude] forKey:@"latitude"];
         [entryToStore setObject:entry.filePath forKey:@"filePath"];
+        [entryToStore setObject:entry.fileType forKey:@"fileType"];
         [entryToStore setObject:entry.date forKey:@"date"];
         [entryToStore setObject:[PFUser currentUser] forKey:@"owner"];
         [entryToStore saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -110,25 +111,6 @@
 - (BOOL)checkIfAlreadyRegistered:(AJBEntry *)entry
 {
     return NO;
-}
-
-// array of all the entries stored in Core Data
-- (NSArray *)allEntries
-{
-    NSMutableArray *fetched = [NSMutableArray array];
-    PFQuery *query = [PFQuery queryWithClassName:@"AJBEntry"];
-    [query whereKey:@"owner" equalTo:[PFUser currentUser]];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded. Add the returned objects to allObjects
-            [fetched addObjectsFromArray:objects];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    NSLog(@"array: %@", fetched);
-    return fetched;
 }
 
 /*
